@@ -1,0 +1,228 @@
+  from pathlib import Path
+
+html = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Guru Dev Astro & Vastu, Rohtak, Haryana — Astrology, Kundli, Vastu and Numerology guidance by Acharya Dr. Govind Vashist.">
+<meta name="keywords" content="Guru Dev Astro Vastu, astrology Rohtak, Vastu Rohtak, Kundli, horoscope, numerology, Acharya Dr Govind Vashist">
+<title>Guru Dev Astro & Vastu | Astrology, Kundli & Vastu | Rohtak</title>
+<style>
+:root{--navy:#08162f;--navy2:#0d2145;--gold:#c9a45c;--cream:#f7f1e4;--text:#172033;--muted:#667085;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#fff;line-height:1.65}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:500;line-height:1.15}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(8,22,47,.97);border-bottom:1px solid rgba(201,164,92,.25)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.logo{color:#fff;font-family:Georgia,serif;font-size:21px;letter-spacing:.8px}
+.logo span{display:block;color:var(--gold);font:11px Arial,sans-serif;letter-spacing:2.5px;margin-top:3px}
+nav{display:flex;gap:22px;align-items:center}
+nav a{color:#f6f0e5;font-size:13px;letter-spacing:.7px}
+nav a:hover{color:var(--gold)}
+.menu{display:none;color:#fff;font-size:25px}
+.hero{background:radial-gradient(circle at 75% 35%,rgba(201,164,92,.18),transparent 28%),linear-gradient(135deg,var(--navy),#102b55);color:#fff;min-height:650px;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:430px;height:430px;border:1px solid rgba(201,164,92,.2);border-radius:50%;right:-120px;top:100px;box-shadow:0 0 0 35px rgba(201,164,92,.035),0 0 0 80px rgba(201,164,92,.025)}
+.hero-content{position:relative;z-index:2;max-width:720px;padding:90px 0}
+.kicker{color:var(--gold);font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(46px,7vw,82px);letter-spacing:-1px}
+.hero h1 span{color:var(--gold)}
+.hero h2{font-size:clamp(24px,3vw,38px);margin:22px 0 18px}
+.hero p{max-width:650px;color:#e8edf6;font-size:18px}
+.buttons{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-block;padding:13px 23px;border:1px solid var(--gold);font-size:12px;letter-spacing:1.2px;text-transform:uppercase}
+.btn.gold{background:var(--gold);color:#09162d}
+.btn.outline{color:#fff}
+section{padding:90px 0}
+.cream{background:var(--cream)}
+.center{text-align:center}
+.eyebrow{color:#a07b35;text-transform:uppercase;letter-spacing:3px;font-size:12px;margin-bottom:12px}
+h2.section-title{font-size:42px;color:var(--navy);margin-bottom:18px}
+.lead{max-width:760px;margin:0 auto;color:#596273}
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.quote{border-left:3px solid var(--gold);padding-left:26px;font:26px Georgia,serif;color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:45px}
+.card{background:#fff;padding:32px;border:1px solid #e7e2d7;min-height:210px;transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(8,22,47,.08)}
+.icon{font-size:28px;margin-bottom:17px}
+.card h3{font-size:23px;color:var(--navy);margin-bottom:10px}
+.card p{color:var(--muted);font-size:14px}
+.features{background:var(--navy);color:#fff}
+.features h2{color:#fff}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:42px}
+.feature{padding:26px 18px;border-top:1px solid rgba(201,164,92,.55)}
+.feature h3{color:var(--gold);font-size:19px;margin-bottom:10px}
+.feature p{color:#d8e0ed;font-size:14px}
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:42px}
+.step{position:relative;padding:25px;background:#faf9f6;border-top:2px solid var(--gold)}
+.step b{color:var(--gold);font-size:13px;letter-spacing:2px}
+.step h3{font-size:22px;color:var(--navy);margin:12px 0}
+.cta{background:linear-gradient(135deg,#102b55,#08162f);color:#fff;text-align:center}
+.cta h2{color:#fff;font-size:45px}
+.cta p{max-width:680px;margin:18px auto;color:#dfe6f1}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:start}
+.contact-box{background:#f8f6f0;padding:35px;border:1px solid #e6dfd0}
+.contact-row{padding:14px 0;border-bottom:1px solid #e2dccf}
+.contact-row strong{display:block;color:var(--navy);font-family:Georgia,serif;font-size:18px}
+.contact-row a{color:#8a672b}
+footer{background:#050f22;color:#d9e0ec;padding:55px 0 25px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:35px}
+footer h3{color:#fff;margin-bottom:12px}
+footer p,footer a{font-size:13px;color:#b8c2d1}
+footer a{display:block;margin:7px 0}
+.copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:35px;padding-top:18px;font-size:12px;color:#8e9aae}
+.whatsapp{position:fixed;right:20px;bottom:20px;z-index:30;background:#25D366;color:#fff;padding:13px 18px;border-radius:30px;box-shadow:0 8px 25px rgba(0,0,0,.2);font-weight:bold;font-size:13px}
+@media(max-width:800px){
+nav{display:none}.menu{display:block}.nav{min-height:65px}
+.hero{min-height:600px}.hero-content{padding:70px 0}
+section{padding:65px 0}.intro,.contact{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.feature-grid,.process{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+.grid,.feature-grid,.process,.footer-grid{grid-template-columns:1fr}.hero h1{font-size:45px}.hero h2{font-size:27px}.hero p{font-size:16px}.whatsapp{right:12px;bottom:12px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container nav">
+<a class="logo" href="#home">GURU DEV ASTRO & VASTU<span>ASTROLOGY • VASTU • KUNDLI • NUMEROLOGY</span></a>
+<nav>
+<a href="#home">HOME</a><a href="#about">ABOUT</a><a href="#services">SERVICES</a><a href="#vastu">VASTU</a><a href="#contact">CONTACT</a>
+</nav>
+<div class="menu">☰</div>
+</div>
+</header>
+
+<main id="home">
+<section class="hero">
+<div class="container hero-content">
+<div class="kicker">Rohtak, Haryana</div>
+<h1>Guru Dev<br><span>Astro & Vastu</span></h1>
+<h2>Find Clarity. Create Balance. Move Forward.</h2>
+<p>Personalized guidance through Astrology, Kundli, Vastu and Numerology for life's important questions.</p>
+<div class="buttons">
+<a class="btn gold" href="https://wa.me/919812346677?text=Hello%20Guru%20Dev%20Astro%20%26%20Vastu%2C%20I%20would%20like%20to%20book%20a%20consultation." target="_blank">Book Consultation</a>
+<a class="btn outline" href="#services">Explore Services</a>
+</div>
+</div>
+</section>
+
+<section id="about" class="cream">
+<div class="container intro">
+<div>
+<div class="eyebrow">Welcome</div>
+<h2 class="section-title">Guidance Rooted in Astrology. Balance Inspired by Vastu.</h2>
+<p>Life brings questions about relationships, career, family, business, home and the future. Guru Dev Astro & Vastu offers personalized guidance through traditional Astrology, Kundli analysis, Vastu and Numerology.</p>
+<p style="margin-top:15px">Our approach is calm, respectful and practical — helping you understand possibilities and make thoughtful decisions.</p>
+</div>
+<div class="quote">“Guidance should bring clarity, not fear.”<br><small style="font:13px Arial;color:#667085">— Acharya Dr. Govind Vashist</small></div>
+</div>
+</section>
+
+<section id="services">
+<div class="container">
+<div class="center">
+<div class="eyebrow">What We Offer</div>
+<h2 class="section-title">Our Services</h2>
+<p class="lead">Personalized consultations for relationships, career, business, home and personal growth.</p>
+</div>
+<div class="grid">
+<div class="card"><div class="icon">🔮</div><h3>Kundli Analysis</h3><p>Explore your birth chart, planetary influences and important life periods.</p></div>
+<div class="card"><div class="icon">💍</div><h3>Marriage & Compatibility</h3><p>Astrological insights into relationships and compatibility.</p></div>
+<div class="card"><div class="icon">💼</div><h3>Career & Business</h3><p>Guidance for career direction, professional decisions and business matters.</p></div>
+<div class="card"><div class="icon">🏠</div><h3>Vastu Consultation</h3><p>Vastu guidance for homes, offices, shops and commercial spaces.</p></div>
+<div class="card"><div class="icon">🔢</div><h3>Numerology</h3><p>Explore the significance of numbers connected with your name and date of birth.</p></div>
+<div class="card"><div class="icon">🌙</div><h3>Horoscope Guidance</h3><p>Personalized horoscope interpretation based on your birth details.</p></div>
+</div>
+</div>
+</section>
+
+<section class="features">
+<div class="container">
+<div class="center"><div class="eyebrow">Our Approach</div><h2 class="section-title">Why Choose Guru Dev?</h2></div>
+<div class="feature-grid">
+<div class="feature"><h3>Personalized Guidance</h3><p>Every consultation focuses on your individual questions and circumstances.</p></div>
+<div class="feature"><h3>Traditional Knowledge</h3><p>Guidance inspired by established principles of Astrology, Vastu and Numerology.</p></div>
+<div class="feature"><h3>Practical Approach</h3><p>Clear and understandable guidance without unnecessary complexity or fear.</p></div>
+<div class="feature"><h3>Confidential Consultation</h3><p>Your personal information and consultation discussions are treated with respect.</p></div>
+</div>
+</div>
+</section>
+
+<section id="vastu" class="cream">
+<div class="container intro">
+<div>
+<div class="eyebrow">Vastu</div>
+<h2 class="section-title">Create Balance in Your Space</h2>
+<p>Vastu guidance for homes, apartments, offices, shops and commercial properties, approached with traditional principles and practical considerations.</p>
+<div class="buttons"><a class="btn gold" href="https://wa.me/919812346677?text=Hello%20Guru%20Dev%20Astro%20%26%20Vastu%2C%20I%20would%20like%20a%20Vastu%20consultation." target="_blank">Book Vastu Consultation</a></div>
+</div>
+<div style="background:var(--navy);color:#fff;padding:40px">
+<h3 style="color:var(--gold);font-size:26px">Vastu Consultation</h3>
+<p style="margin-top:15px">Home • Office • Shop • Business • Property</p>
+<p style="margin-top:18px;color:#d7dfeb">Contact us to discuss your requirements and the information needed for your consultation.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="center"><div class="eyebrow">Simple Process</div><h2 class="section-title">How a Consultation Works</h2></div>
+<div class="process">
+<div class="step"><b>01</b><h3>Share Details</h3><p>Provide the relevant birth or property information.</p></div>
+<div class="step"><b>02</b><h3>Discuss</h3><p>Tell us about the questions or areas where you seek guidance.</p></div>
+<div class="step"><b>03</b><h3>Analysis</h3><p>The relevant Astrology or Vastu principles are reviewed.</p></div>
+<div class="step"><b>04</b><h3>Guidance</h3><p>Receive understandable insights and practical suggestions.</p></div>
+</div>
+</div>
+</section>
+
+<section class="cta">
+<div class="container">
+<h2>Ready to Find Clarity?</h2>
+<p>Let's discuss your requirements for Astrology, Kundli, Vastu or Numerology guidance.</p>
+<div class="buttons" style="justify-content:center">
+<a class="btn gold" href="https://wa.me/919812346677?text=Hello%20Guru%20Dev%20Astro%20%26%20Vastu%2C%20I%20would%20like%20to%20book%20a%20consultation." target="_blank">WhatsApp Us</a>
+<a class="btn outline" href="tel:+919812346677">Call Now</a>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container contact">
+<div>
+<div class="eyebrow">Contact</div>
+<h2 class="section-title">Connect With Guru Dev Astro & Vastu</h2>
+<p>For consultation enquiries, appointments and Vastu requirements, contact us directly.</p>
+</div>
+<div class="contact-box">
+<div class="contact-row"><strong>Acharya Dr. Govind Vashist</strong><span>Astrology & Vastu Consultant</span></div>
+<div class="contact-row"><strong>Location</strong><span>Rohtak, Haryana, India</span></div>
+<div class="contact-row"><strong>WhatsApp / Phone</strong><a href="tel:+919812346677">+91 98123 46677</a><br><a href="tel:+919466176677">+91 94661 76677</a></div>
+<div class="contact-row"><strong>WhatsApp Consultation</strong><a href="https://wa.me/919812346677?text=Hello%20Guru%20Dev%20Astro%20%26%20Vastu%2C%20I%20would%20like%20to%20make%20a%20consultation%20enquiry." target="_blank">Message us on WhatsApp →</a></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div><h3>Guru Dev Astro & Vastu</h3><p>Astrology • Vastu • Kundli • Numerology</p><p style="margin-top:12px">Find clarity. Create balance. Move forward.</p></div>
+<div><h3>Quick Links</h3><a href="#about">About</a><a href="#services">Services</a><a href="#vastu">Vastu</a><a href="#contact">Contact</a></div>
+<div><h3>Contact</h3><a href="tel:+919812346677">+91 98123 46677</a><a href="tel:+919466176677">+91 94661 76677</a><p>Rohtak, Haryana, India</p></div>
+</div>
+<div class="copyright">© 2026 Guru Dev Astro & Vastu. All Rights Reserved. <br>Astrology and Vastu consultations are provided for guidance and informational purposes and are not a substitute for professional medical, legal or financial advice.</div>
+</div>
+</footer>
+<a class="whatsapp" href="https://wa.me/919812346677?text=Hello%20Guru%20Dev%20Astro%20%26%20Vastu%2C%20I%20would%20like%20to%20book%20a%20consultation." target="_blank">WhatsApp</a>
+</body>
+</html>'''
+
+path = Path("/mnt/data/index.html")
+path.write_text(html, encoding="utf-8")
+print(path)
